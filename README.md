@@ -5,7 +5,7 @@ Fork from [https://mengxiong10.github.io/vue2-datepicker/](https://mengxiong10.g
 ## Install
 
 ```bash
-$ npm install vue2-datepicker --save
+$ npm install https://github.com/larfeus/vue2-datepicker --save
 ```
 
 ## Usage
@@ -60,6 +60,8 @@ export default {
 | input-class         | String        | 'mx-input'  | the input class name                              |
 | confirm-text        | String        | 'OK'        | the default text to display on confirm button     |
 | disabled            | Boolean       | false       | Disable the component                             |
+| titleFrom           | String        | 'From date' | From date title when type is range                |
+| titleTo             | String        | 'To   date' | To date title when type is range                  |
 
 #### shortcuts
 * true -      show the default shortcuts
