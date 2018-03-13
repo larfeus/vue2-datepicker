@@ -7,7 +7,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
+        NODE_ENV: '"development"'
       }
     }),
     new webpack.optimize.UglifyJsPlugin({

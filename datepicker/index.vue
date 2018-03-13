@@ -32,8 +32,13 @@
         :show="showPopup"></calendar-panel>
       <div v-else style="overflow:hidden" >
         <div class="mx-datepicker-top" v-if="ranges.length">
-          <span v-for="range in ranges" @click="selectRange(range)">{{range.text}}</span>
+            <select v-if="ranges.length > 0" v-model="selectedRange">
+                <option :value="null"></option>
+                <option v-for="range in ranges" :value="range">{{range.text}}</option>
+            </select>
         </div>
+        <div class="mx-datepicker-top mx-datepicker-title">{{titleFrom}}</div>
+        <div class="mx-datepicker-top mx-datepicker-title">{{titleTo}}</div>
         <calendar-panel style="width:50%;box-shadow:1px 0 rgba(0, 0, 0, .1)"
                         v-model="currentValue[0]"
                         :end-at="currentValue[1]"
@@ -129,6 +134,14 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    titleFrom: {
+      type: String,
+      default: 'From date'
+    },
+    titleTo: {
+      type: String,
+      default: 'To date'
     }
   },
   data() {
@@ -137,7 +150,8 @@ export default {
       showCloseIcon: false,
       currentValue: this.value,
       position: null,
-      ranges: [] // 快捷选项
+      selectedRange: null,
+      ranges: []
     }
   },
   watch: {
@@ -156,6 +170,12 @@ export default {
     showPopup(val) {
       if (val) {
         this.$nextTick(this.displayPopup)
+      }
+    },
+    selectedRange(val) {
+      if (val !== null) {
+        this.$emit('input', val.start && val.end ? [val.start, val.end] : '')
+        this.selectedRange = null;
       }
     }
   },
@@ -275,9 +295,6 @@ export default {
         this.isValidDate(date[1])
       )
     },
-    selectRange(range) {
-      this.$emit('input', [range.start, range.end])
-    },
     initRanges() {
       if (Array.isArray(this.shortcuts)) {
         this.ranges = this.shortcuts
@@ -302,10 +319,15 @@ export default {
             text: '最近30天',
             start: new Date(Date.now() - 3600 * 1000 * 24 * 30),
             end: new Date()
+          },
+          {
+            text: 'all dates',
+            start: null,
+            end: null
           }
         ]
         this.ranges.forEach((v, i) => {
-          v.text = this.translation.pickers[i]
+          v.text = this.translation.pickers[i] ? this.translation.pickers[i] : v.text
         })
       } else {
         this.ranges = []
@@ -460,6 +482,20 @@ export default {
       color: #48576a;
     }
   }
+  & > select {
+    padding: 3px 5px;
+    color: #48576a;
+    outline: 0;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  }
+}
+
+.mx-datepicker-title {
+  float: left;
+  width: 50%;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 0px;
 }
 
 .mx-datepicker-footer {

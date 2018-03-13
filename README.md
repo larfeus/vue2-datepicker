@@ -1,13 +1,6 @@
 # vue2-datepicker
 
-[中文版](https://github.com/mengxiong10/vue2-datepicker/blob/master/README_CN.md)
-
-> A Datepicker Component For Vue2
-
-## Demo
-<https://mengxiong10.github.io/vue2-datepicker/>
-
-![image](https://github.com/mengxiong10/vue2-datepicker/raw/master/screenshot/demo.PNG)
+Fork from [https://mengxiong10.github.io/vue2-datepicker/](https://mengxiong10.github.io/vue2-datepicker/)
 
 ## Install
 
