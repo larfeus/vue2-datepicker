@@ -4,7 +4,6 @@
        :style="{'width': width + 'px','min-width':range ? (type === 'datetime' ? '320px' : '210px') : '140px'}"
        v-clickoutside="closePopup">
     <input readonly
-          name="date"
           :disabled="disabled"
           :class="inputClass"
           :value="text"
