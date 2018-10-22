@@ -62,6 +62,7 @@ export default {
 | disabled            | Boolean       | false       | Disable the component                             |
 | titleFrom           | String        | 'From date' | From date title when type is range                |
 | titleTo             | String        | 'To   date' | To date title when type is range                  |
+| disableReset        | Boolean       | false       | Disable reset                                     |
 
 #### shortcuts
 * true -      show the default shortcuts

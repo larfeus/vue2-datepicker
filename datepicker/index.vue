@@ -141,6 +141,10 @@ export default {
     titleTo: {
       type: String,
       default: 'To date'
+    },
+    disableReset: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -236,6 +240,9 @@ export default {
     },
     hoverIcon(e) {
       if (this.disabled) {
+        return
+      }
+      if (this.disableReset) {
         return
       }
       if (e.type === 'mouseenter' && this.text) {
