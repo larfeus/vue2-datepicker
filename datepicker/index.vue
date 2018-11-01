@@ -209,6 +209,7 @@ export default {
   methods: {
     updateDate() {
       const val = this.currentValue
+      this.$emit('chose', val);
       if ((!this.range && val) || (this.range && val[0] && val[1])) {
         this.$emit('input', val)
       }
